@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from mockdata import product
 
 app = FastAPI()  # this create an instance of the FastAPI class 
 
@@ -35,3 +36,7 @@ def multiplePathParameters(user_id:int,fname:str,lname:str,email:str,age:str,mob
         "mobile":mobile,
         "message":"This is multiple path parameters"
     }
+    
+@app.get("/simple-return-mockdata")
+def getHoleData():
+    return{"This is mock data":product}
