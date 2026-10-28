@@ -37,6 +37,25 @@ def multiplePathParameters(user_id:int,fname:str,lname:str,email:str,age:str,mob
         "message":"This is multiple path parameters"
     }
     
+    
+# this simple return your mock data 
 @app.get("/simple-return-mockdata")
 def getHoleData():
     return{"This is mock data":product}
+
+# we can fetch speifc data 
+
+# @app.get("/fetch-spesfic-data/{userId}")
+@app.post("/fetch-user-ID/{userId}")
+def fetchUserRecord(userId:int):
+    # print("We can need logic when user is search UserId show data ")
+    # all data product we can find user id  find loop throw 
+    userRecord = None
+    for findUserId in product:
+        if findUserId.get("id") == userId:
+            userRecord = findUserId
+            return{
+                "userRecord":userRecord
+            }
+    
+   
