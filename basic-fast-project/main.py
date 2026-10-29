@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from mockdata import product
-
+from httpmethod import httpmethodRouter
 app = FastAPI()  # this create an instance of the FastAPI class 
+app.include_router(httpmethodRouter)
 
 @app.get("/Home")
 def Home():
