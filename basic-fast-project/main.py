@@ -1,8 +1,12 @@
 from fastapi import FastAPI
 from mockdata import product
 from httpmethod import httpmethodRouter
+from selfLogic import logical
+
+
 app = FastAPI()  # this create an instance of the FastAPI class 
 app.include_router(httpmethodRouter)
+app.include_router(logical)
 
 @app.get("/Home")
 def Home():
