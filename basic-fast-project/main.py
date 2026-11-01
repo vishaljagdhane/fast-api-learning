@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from mockdata import product
 from httpmethod import httpmethodRouter
 from selfLogic import logical
+from databaseconnection import connect_database
 
 
 app = FastAPI()  # this create an instance of the FastAPI class 
@@ -63,4 +64,15 @@ def fetchUserRecord(userId:int):
                 "userRecord":userRecord
             }
     
+    
+
+@app.get("/connect-db",tags=["DatabaseConnectionLearning"])
+def checkDatabaseConnection():
+    conn =connect_database()
+    if conn:
+        conn.close()
+        return{"message":"Hello user database is connected "}
+    else:
+        return{"message":"Hello developer please database connection is failed "}
+        
    
