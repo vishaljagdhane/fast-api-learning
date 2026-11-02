@@ -3,7 +3,8 @@ from mockdata import product
 from httpmethod import httpmethodRouter
 from selfLogic import logical
 from databaseconnection import connect_database
-
+from BasicDatabaseConnection import create_connection
+from AdavanceDatabaseConnection import Advance_create_connection
 
 app = FastAPI()  # this create an instance of the FastAPI class 
 app.include_router(httpmethodRouter)
@@ -74,5 +75,31 @@ def checkDatabaseConnection():
         return{"message":"Hello user database is connected "}
     else:
         return{"message":"Hello developer please database connection is failed "}
+    
+    
+@app.get("/connect-db-basic",tags=["DatabaseConnectionLearning"])
+def checkDatabaseConnectionBasic():
+    connect_database = create_connection()
+    try:
+        if connect_database:
+            connect_database.close()
+            return{"message":"Hello user database is connected "}
+        else:
+            return{"message":"Hello developer please database connection is failed "}
+    except Exception as e:
+        return{"message":"Error occurred while closing the database connection:", "error": str(e)}
+    
+@app.get("/connect-db-advance",tags=["DatabaseConnectionLearning"])
+def checkDatabaseConnectionAdvance():
+    advance_connection = Advance_create_connection()
+    try:
+        if advance_connection:
+            advance_connection.close()
+            return{"message":"Hello user database is connected "}
+        else:
+            return{"message":"Hello developer please database connection is failed "}
+    except Exception as e:
+        return{"message":"Error occurred while closing the database connection:", "error": str(e)}
+    
         
    
