@@ -5,10 +5,12 @@ from selfLogic import logical
 from databaseconnection import connect_database
 from BasicDatabaseConnection import create_connection
 from AdavanceDatabaseConnection import Advance_create_connection
+from curd import curdObject
 
 app = FastAPI()  # this create an instance of the FastAPI class 
 app.include_router(httpmethodRouter)
 app.include_router(logical)
+app.include_router(curdObject)
 
 @app.get("/Home")
 def Home():
